@@ -1,0 +1,33 @@
+def insertion_sort(arr):
+    n = len(arr)
+    
+    for i in range(1, n):
+        key = arr[i]
+        j = i - 1
+        
+        # Move elements of arr[0..i-1], that are greater than key, to one position ahead
+        # of their current position
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        
+        # Place the key at its correct position in sorted order
+        arr[j + 1] = key
+    
+    return arr
+
+# Test cases
+inputs = [
+    [64, 25, 12, 22, 11],
+    [29, 10, 14, 37, 13],
+    [3, 5, 2, 1, 4],
+    [1, 2, 3, 4, 5],
+    [5, 4, 3, 2, 1]
+]
+
+for input_list in inputs:
+    sorted_list = insertion_sort(input_list.copy())
+    print(f"Input: {input_list}")
+    print(f"Sorted Output: {sorted_list}")
+    print()
+INPUT AND 

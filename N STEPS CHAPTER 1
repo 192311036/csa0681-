@@ -1,0 +1,33 @@
+def findPaths(m, n, N, i, j):
+    MOD = 10**9 + 7
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    dp = [[[0] * n for _ in range(m)] for _ in range(N + 1)]
+    
+    dp[0][i][j] = 1  # Starting point
+    
+    for k in range(1, N + 1):
+        for r in range(m):
+            for c in range(n):
+                for dr, dc in directions:
+                    nr, nc = r + dr, c + dc
+                    if nr < 0 or nr >= m or nc < 0 or nc >= n:
+                        dp[k][r][c] += 1  # Increment count if moving out of boundary
+                    else:
+                        dp[k][r][c] += dp[k-1][nr][nc]
+                    dp[k][r][c] %= MOD
+    
+    # Sum all ways to move out of boundary in exactly N steps
+    result = 0
+    for r in range(m):
+        for c in range(n):
+            result += dp[N][r][c]
+            result %= MOD
+    
+    return result
+
+# Test Cases
+print(findPaths(2, 2, 2, 0, 0))  
+print(findPaths(1, 3, 3, 0, 1))
+INPUT AND OUT PUT:
+6
+12

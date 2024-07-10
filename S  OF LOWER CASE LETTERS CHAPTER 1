@@ -1,0 +1,29 @@
+def large_groups(s):
+    if len(s) < 3:
+        return []
+
+    result = []
+    start = 0
+    end = 0
+    n = len(s)
+
+    while end < n:
+        # Move end to the right until the character changes or end of string
+        while end < n and s[end] == s[start]:
+            end += 1
+        
+        # Check if the group is large enough
+        if end - start >= 3:
+            result.append([start, end - 1])
+        
+        # Move start to end to continue checking next group
+        start = end
+
+    return result
+
+# Example usage:
+print(large_groups("abbxxxxzzy"))  # Output: [[3, 6]]
+print(large_groups("abc"))         # Output: []
+INPUT AND OUT PUT:
+[3,6]
+[]

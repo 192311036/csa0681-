@@ -1,0 +1,26 @@
+def champagne_tower(poured, query_row, query_glass):
+    # Initialize a 2D array to represent the glasses
+    tower = [[0.0] * (i + 1) for i in range(100)]
+    tower[0][0] = poured  # Pour the champagne into the top glass
+    
+    # Simulate the overflow
+    for i in range(query_row):
+        for j in range(i + 1):
+            # Calculate overflow amount
+            overflow = (tower[i][j] - 1.0) / 2.0
+            if overflow > 0:
+                # Distribute overflow to the glasses below
+                tower[i + 1][j] += overflow
+                tower[i + 1][j + 1] += overflow
+    
+    # Return the amount of champagne in the queried glass
+    return min(1.0, tower[query_row][query_glass])
+
+# Example usage:
+print(champagne_tower(1, 1, 1))  
+print(champagne_tower(2, 1, 1))  
+print(champagne_tower(100000009, 33, 17))  
+OUT PUT:
+0.0
+0.5
+1.0

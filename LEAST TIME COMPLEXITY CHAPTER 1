@@ -1,0 +1,24 @@
+def find_maximum(nums):
+    if not nums:
+        return None  # Return None for empty input (though based on test cases, this shouldn't happen)
+
+    max_value = nums[0]  # Initialize max_value with the first element
+    
+    for num in nums[1:]:  # Start iterating from the second element
+        if num > max_value:
+            max_value = num  # Update max_value if a larger number is found
+    
+    return max_value
+
+# Test Cases
+test_case_1 = [1, 2, 3, 4, 5]
+test_case_2 = [7, 7, 7, 7, 7]
+test_case_3 = [-10, 2, 3, -4, 5]
+
+print(find_maximum(test_case_1))  
+print(find_maximum(test_case_2))  
+print(find_maximum(test_case_3))  
+INPUT AND OUTPUT:
+5
+7
+5

@@ -1,0 +1,25 @@
+def bubble_sort(nums):
+    n = len(nums)
+    
+    for i in range(n):
+        swapped = False
+        
+        # Last i elements are already in place
+        for j in range(0, n - i - 1):
+            if nums[j] > nums[j + 1]:
+                # Swap elements
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
+                swapped = True
+        
+        # If no elements were swapped in this pass, array is sorted
+        if not swapped:
+            break
+    
+    return nums
+
+# Example usage:
+nums = [64, 34, 25, 12, 22, 11, 90]
+sorted_nums = bubble_sort(nums)
+print("Sorted array:", sorted_nums)
+INPUT AND OUTPUT:
+SORTED ARRAY:[11,12,22,25,34,64,90]

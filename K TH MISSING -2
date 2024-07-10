@@ -1,0 +1,34 @@
+def find_kth_missing_positive(arr, k):
+    # Initialize variables
+    missing_count = 0
+    current_num = 1  # Starting from the first positive integer
+    
+    # Iterate through the array
+    for num in arr:
+        while current_num < num:
+            missing_count += 1
+            if missing_count == k:
+                return current_num
+            current_num += 1
+        current_num = num + 1
+    
+    # If kth missing positive integer is beyond the array, continue incrementing
+    while missing_count < k:
+        missing_count += 1
+        current_num += 1
+    
+    return current_num - 1
+
+# Test cases from examples
+arr1 = [2, 3, 4, 7, 11]
+k1 = 5
+print(f"Input: arr = {arr1}, k = {k1}")
+print("Output:", find_kth_missing_positive(arr1, k1))
+
+arr2 = [1, 2, 3, 4]
+k2 = 2
+print(f"\nInput: arr = {arr2}, k = {k2}")
+print("Output:", find_kth_missing_positive(arr2, k2))
+INPUT AND OUT PUT:
+Input: arr = [2, 3, 4, 7, 11], k = 5
+Output: 9

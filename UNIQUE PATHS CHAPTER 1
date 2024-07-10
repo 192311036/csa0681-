@@ -1,0 +1,24 @@
+def unique_paths(m, n):
+    # Create a 2D dp array to store number of paths to each cell
+    dp = [[0] * n for _ in range(m)]
+    
+    # Initialize the number of paths to reach the top-left corner
+    dp[0][0] = 1
+    
+    # Fill the dp array
+    for i in range(m):
+        for j in range(n):
+            if i > 0:
+                dp[i][j] += dp[i-1][j]  # Move from above cell
+            if j > 0:
+                dp[i][j] += dp[i][j-1]  # Move from left cell
+    
+    # The bottom-right corner will contain the number of unique paths
+    return dp[m-1][n-1]
+
+# Examples
+print(unique_paths(7, 3))  
+print(unique_paths(3, 2)) 
+OUT PUT:
+28
+3
